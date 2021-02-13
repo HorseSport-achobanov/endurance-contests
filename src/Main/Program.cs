@@ -14,26 +14,22 @@ namespace Main
         {
             var provider = ConfigureServices();
 
-            var dbContext = provider.GetService<EcmDbContext>();
+            var dbService = provider.GetService<DbService>();
 
             var contest = new ContestStore(0, "Contest");
             var trial = new TrialStore(0, 10, 0);
 
             contest.Trials.Add(trial);
 
-            dbContext.Contests.Add(contest);
-            dbContext.SaveChanges();
+            dbService.Save(contest);
 
-            var contestWithTrial = dbContext
-                .Contests
-                .Include(x => x.Trials)
-                .First();
-
+            var contestWithTrial = dbService.Get();
             var secondTrial = new TrialStore(0, 20, 0);
-
             contestWithTrial.Trials.Add(secondTrial);
 
-            dbContext.SaveChanges();
+            dbService.Save(contestWithTrial);
+
+            var result = dbService.Get();
             ;
         }
 
@@ -47,6 +43,8 @@ namespace Main
                         .UseInMemoryDatabase(Guid.NewGuid().ToString())
                         .EnableSensitiveDataLogging()
                         .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning)));
+
+            services.AddTransient<DbService, DbService>();
 
             return services.BuildServiceProvider();
         }
