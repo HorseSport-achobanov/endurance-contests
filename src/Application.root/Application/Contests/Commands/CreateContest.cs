@@ -5,7 +5,7 @@ using EnduranceContestManager.Domain.Entities.Contests;
 
 namespace EnduranceContestManager.Application.Contests.Commands
 {
-    public class CreateContest : IRequest<int>, IContestState
+    public class CreateContest : IRequest<string>, IContestState
     {
         public string Name { get; set; }
 

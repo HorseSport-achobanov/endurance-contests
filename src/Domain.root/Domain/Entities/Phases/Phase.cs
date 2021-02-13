@@ -8,10 +8,9 @@ namespace EnduranceContestManager.Domain.Entities.Phases
 {
     public class Phase : Entity, IPhaseState, IAggregateRoot
     {
-        public Phase(int id, int lengthInKilometers, int trialId)
+        public Phase(string id, int lengthInKilometers)
             : base(id)
         {
-            this.TrialId = trialId;
             this.LengthInKilometers = lengthInKilometers;
         }
 
@@ -20,8 +19,6 @@ namespace EnduranceContestManager.Domain.Entities.Phases
         public bool IsFinal { get; private set; }
 
         public IList<PhaseForCategory> PhasesForCategories { get; private set; } = new List<PhaseForCategory>();
-
-        public int TrialId { get; private set; }
 
         public Trial Trial { get; private set; }
 

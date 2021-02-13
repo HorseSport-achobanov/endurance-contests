@@ -8,7 +8,7 @@ namespace EnduranceContestManager.Domain.Entities.Trials
 {
     public class Trial : Entity, ITrialState, IAggregateRoot
     {
-        public Trial(int id, int lengthInKilometers, int durationInDays)
+        public Trial(string id, int lengthInKilometers, int durationInDays)
             : base(id)
         {
             this.LengthInKilometers = lengthInKilometers;

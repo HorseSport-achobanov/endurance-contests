@@ -10,7 +10,7 @@ namespace EnduranceContestManager.Application.Contests.Commands
 {
     public class UpdateContest : IIdentifiableRequest, IContestState, IMapTo<Contest>
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string Name { get; set; }
 

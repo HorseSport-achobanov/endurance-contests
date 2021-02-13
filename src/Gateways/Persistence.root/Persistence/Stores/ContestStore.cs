@@ -13,7 +13,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Stores
 
         [JsonConstructor]
         public ContestStore(
-            int id,
+            string id,
             string name,
             string populatedPlace,
             string country,

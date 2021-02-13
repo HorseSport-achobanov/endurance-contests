@@ -21,7 +21,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
 
         protected TDataStore DataStore { get; }
 
-        public virtual async Task<TModel> Find<TModel>(int id)
+        public virtual async Task<TModel> Find<TModel>(string id)
             => await this.DataStore
                 .Set<TEntityStore>()
                 .Where(x => x.Id == id)
@@ -34,10 +34,10 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
                 .MapQueryable<TModel>()
                 .ToListAsync();
 
-        public virtual async Task<TEntityStore> Find(int id)
+        public virtual async Task<TEntityStore> Find(string id)
             => await this.DataStore.FindAsync<TEntityStore>(id);
 
-        public async Task<int> Save(TEntity entity, CancellationToken cancellationToken = default)
+        public async Task<string> Save(TEntity entity, CancellationToken cancellationToken = default)
         {
             var dataEntry = await this.DataStore.FindAsync<TEntityStore>(entity.Id);
             if (dataEntry == null)

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace EnduranceContestManager.Application.Core.Handlers
 {
-    public abstract class CreateHandler<TRequest, TEntity> : Handler<TRequest, int>
-        where TRequest : IRequest<int>, IEntityState
+    public abstract class CreateHandler<TRequest, TEntity> : Handler<TRequest, string>
+        where TRequest : IRequest<string>, IEntityState
         where TEntity : IAggregateRoot
     {
         private readonly IFactory<TEntity> factory;
@@ -20,7 +20,7 @@ namespace EnduranceContestManager.Application.Core.Handlers
             this.commands = commands;
         }
 
-        public override async Task<int> Handle(TRequest request, CancellationToken cancellationToken)
+        public override async Task<string> Handle(TRequest request, CancellationToken cancellationToken)
         {
             var entity = this.factory.Create(request);
 

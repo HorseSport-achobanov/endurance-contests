@@ -7,6 +7,6 @@ namespace EnduranceContestManager.Application.Core.Interfaces
     public interface ICommandRepository<in TEntity> : IQueryRepository
         where TEntity : IAggregateRoot
     {
-        Task<int> Save(TEntity entity, CancellationToken cancellationToken = default);
+        Task<string> Save(TEntity entity, CancellationToken cancellationToken = default);
     }
 }

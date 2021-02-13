@@ -2,12 +2,12 @@
 {
     public abstract class Entity : IEntity
     {
-        protected Entity(int? id)
+        protected Entity(string id)
         {
-            this.Id = id ?? default;
+            this.Id = id;
         }
 
-        public int Id { get; private set; }
+        public string Id { get; private set; }
 
         // Add GetHashCode(), Equals(), etc.
     }

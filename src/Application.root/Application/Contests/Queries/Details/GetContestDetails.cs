@@ -7,7 +7,7 @@ namespace EnduranceContestManager.Application.Contests.Queries.Details
 {
     public class GetContestDetails : IRequest<ContestDetailsModel>, IIdentifiableRequest
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public class GetContestDetailsHandler : FindHandler<GetContestDetails, ContestDetailsModel>
         {

@@ -11,7 +11,7 @@ namespace EnduranceContestManager.Domain.Entities.Contests
     public class Contest : Entity, IContestState, IAggregateRoot
     {
         public Contest(
-            int id,
+            string id,
             string name,
             string populatedPlace,
             string country,

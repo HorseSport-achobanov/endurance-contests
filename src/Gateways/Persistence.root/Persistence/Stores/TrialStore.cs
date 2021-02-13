@@ -17,7 +17,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Stores
         }
 
         [JsonConstructor]
-        public TrialStore(int id, int lengthInKilometers, int durationInDays, int contestId)
+        public TrialStore(string id, int lengthInKilometers, int durationInDays, string contestId)
             : base(id)
         {
             this.LengthInKilometers = lengthInKilometers;
@@ -29,7 +29,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Stores
 
         public int DurationInDays { get; internal set; }
 
-        public int ContestId { get; internal set; }
+        public string ContestId { get; internal set; }
 
         [JsonIgnore]
         public ContestStore Contest { get; internal set; }

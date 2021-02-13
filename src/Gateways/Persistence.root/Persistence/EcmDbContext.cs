@@ -45,6 +45,15 @@ namespace EnduranceContestManager.Gateways.Persistence
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+            builder
+                .Entity<ContestStore>()
+                .HasMany(x => x.Trials)
+                .WithOne(x => x.Contest);
+
+            builder
+                .Entity<TrialStore>()
+                .HasKey(x => x.Id);
+
             base.OnModelCreating(builder);
         }
     }

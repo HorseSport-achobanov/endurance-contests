@@ -18,7 +18,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Repositories.Contests
         {
         }
 
-        public override Task<TModel> Find<TModel>(int id)
+        public override Task<TModel> Find<TModel>(string id)
             => this.DataStore
                 .Set<ContestStore>()
                 .Where(x => x.Id == id)

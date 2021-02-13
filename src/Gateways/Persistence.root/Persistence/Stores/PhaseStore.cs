@@ -13,7 +13,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Stores
         }
 
         [JsonConstructor]
-        public PhaseStore(int id, int lengthInKilometers, int trialId)
+        public PhaseStore(string id, int lengthInKilometers, string trialId)
             : base(id)
         {
             this.LengthInKilometers = lengthInKilometers;
@@ -27,7 +27,7 @@ namespace EnduranceContestManager.Gateways.Persistence.Stores
         [JsonIgnore]
         public IList<PhaseForCategoryStore> PhasesForCategories { get; internal set; }
 
-        public int TrialId { get; internal set; }
+        public string TrialId { get; internal set; }
 
         [JsonIgnore]
         public Trial Trial { get; internal set; }

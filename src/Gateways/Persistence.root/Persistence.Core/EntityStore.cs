@@ -11,12 +11,12 @@ namespace EnduranceContestManager.Gateways.Persistence.Core
         {
         }
 
-        protected EntityStore(int id)
+        protected EntityStore(string id)
         {
             this.Id = id;
         }
 
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
     }
 }

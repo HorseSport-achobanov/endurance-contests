@@ -7,7 +7,7 @@ namespace EnduranceContestManager.Domain.Entities.PhasesForCategory
     public class PhaseForCategory : Entity, IPhaseForCategoryState, IAggregateRoot
     {
         public PhaseForCategory(
-            int id,
+            string id,
             int maxRecoveryTimeInMinutes,
             int restTimeInMinutes,
             Category category,
