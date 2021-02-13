@@ -6,7 +6,6 @@ namespace EnduranceContestManager.Domain.Models.Contests
 {
     public partial class Contest
     {
-        [NotMapped]
         public ContestWorker PresidentVetCommission { get; private set; }
 
         public Contest SetPresidentVetCommission(ContestWorker presidentVetCommission)
