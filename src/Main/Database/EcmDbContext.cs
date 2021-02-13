@@ -1,8 +1,7 @@
-﻿using System.Reflection;
-using EnduranceContestManager.Gateways.Persistence.Stores;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
-namespace EnduranceContestManager.Gateways.Persistence
+namespace Main.Database
 {
     public class EcmDbContext : DbContext
     {

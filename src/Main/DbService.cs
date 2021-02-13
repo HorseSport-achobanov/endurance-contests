@@ -1,5 +1,7 @@
-using EnduranceContestManager.Gateways.Persistence;
-using EnduranceContestManager.Gateways.Persistence.Stores;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Main.Database;
+using Main.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
@@ -8,30 +10,37 @@ namespace Main
     public class DbService
     {
         private readonly EcmDbContext db;
+        private readonly IConfigurationProvider mapperConfig;
+        private readonly IMapper mapper;
 
-        public DbService(EcmDbContext db)
+        public DbService(EcmDbContext db, IConfigurationProvider mapperConfig, IMapper mapper)
         {
             this.db = db;
+            this.mapperConfig = mapperConfig;
+            this.mapper = mapper;
         }
 
-        public ContestStore Get()
+        public Contest Get()
         {
             return this.db
                 .Contests
                 .Include(x => x.Trials)
+                .ProjectTo<Contest>(this.mapperConfig)
                 .FirstOrDefault();
         }
 
-        public void Save(ContestStore contest)
+        public void Save(Contest contest)
         {
             var existingContest = this.db.Contests.FirstOrDefault(x => x.Id == contest.Id);
             if (existingContest == null)
             {
-                this.db.Contests.Add(contest);
+                var store = this.mapper.Map<Contest, ContestStore>(contest);
+                this.db.Contests.Add(store);
             }
             else
             {
-                this.db.Contests.Update(contest);
+                var kur = this.mapper.Map(contest, existingContest);
+                // this.db.Contests.Update(existingContest);
             }
 
             this.db.SaveChanges();

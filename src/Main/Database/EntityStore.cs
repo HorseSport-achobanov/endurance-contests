@@ -1,6 +1,4 @@
-using System.ComponentModel.DataAnnotations;
-
-namespace EnduranceContestManager.Gateways.Persistence.Core
+namespace Main.Database
 {
     public abstract class EntityStore
     {

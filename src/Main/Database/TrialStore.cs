@@ -1,6 +1,4 @@
-using EnduranceContestManager.Gateways.Persistence.Core;
-
-namespace EnduranceContestManager.Gateways.Persistence.Stores
+namespace Main.Database
 {
     public class TrialStore : EntityStore
     {

@@ -1,10 +1,11 @@
-﻿using EnduranceContestManager.Gateways.Persistence;
-using EnduranceContestManager.Gateways.Persistence.Stores;
+﻿using AutoMapper;
+using Main.Database;
+using Main.Entities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using System;
-using System.Linq;
+using System.Reflection;
 
 namespace Main
 {
@@ -16,16 +17,16 @@ namespace Main
 
             var dbService = provider.GetService<DbService>();
 
-            var contest = new ContestStore(0, "Contest");
-            var trial = new TrialStore(0, 10, 0);
+            var contest = new Contest(0, "Contest");
+            var trial = new Trial(0, 10);
 
-            contest.Trials.Add(trial);
+            contest.AddTrial(trial);
 
             dbService.Save(contest);
 
             var contestWithTrial = dbService.Get();
-            var secondTrial = new TrialStore(0, 20, 0);
-            contestWithTrial.Trials.Add(secondTrial);
+            var secondTrial = new Trial(0, 20);
+            contestWithTrial.AddTrial(secondTrial);
 
             dbService.Save(contestWithTrial);
 
@@ -45,6 +46,7 @@ namespace Main
                         .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning)));
 
             services.AddTransient<DbService, DbService>();
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             return services.BuildServiceProvider();
         }

@@ -1,7 +1,6 @@
-using EnduranceContestManager.Gateways.Persistence.Core;
 using System.Collections.Generic;
 
-namespace EnduranceContestManager.Gateways.Persistence.Stores
+namespace Main.Database
 {
     public class ContestStore : EntityStore
     {
